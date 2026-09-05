@@ -6,6 +6,22 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-09-05
+
+### Added
+
+- `references/reporting-to-user.md`: mandatory plain-language end-of-task reports and "show, don't tell" demonstration of user-visible changes, designed for owners who do not read code.
+- `references/cost-policy.md`: approval, estimation, documentation, and cleanup rules for anything that costs money; recurring costs always require explicit user approval.
+- `workflows/deploy.md`: deployment workflow covering environments, production secrets, post-deploy verification, rollback, and minimum operations.
+- `profiles/node-typescript.md` with detection in `profiles/detection.md`.
+- Solo maintainer mode in `references/scaling-model.md`: agent self-verification plus owner behavior validation replaces human code review in single-maintainer repositories.
+- `templates/LICENSE-MIT` and `templates/CODEOWNERS`, closing the gap between the Stage 1/2 requirements and the available templates.
+- MIT `LICENSE` for the skill repository itself.
+
+### Changed
+
+- `SKILL.md`: new "Reporting to the user" section; wired the new workflow, profile, and references; frontmatter description now covers deployment and cost hygiene.
+
 ## [0.6.0] - 2026-09-05
 
 ### Added

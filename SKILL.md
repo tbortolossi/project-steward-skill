@@ -1,6 +1,6 @@
 ---
 name: project-steward
-description: Software project lifecycle management and engineering discipline for repositories of any maturity. Use when bootstrapping or professionalizing a repository, implementing a feature, fix, refactor, or security change with proper git workflow, preparing a release, auditing repository health, or enforcing testing, documentation, dependency, and security hygiene. Also use for branch/worktree strategy, changelogs, ADRs, roadmaps, and CI/governance setup.
+description: Software project lifecycle management and engineering discipline for repositories of any maturity. Use when bootstrapping or professionalizing a repository, implementing a feature, fix, refactor, or security change with proper git workflow, preparing a release, deploying a project, auditing repository health, or enforcing testing, documentation, dependency, cost, and security hygiene. Also use for branch/worktree strategy, changelogs, ADRs, roadmaps, and CI/governance setup.
 ---
 
 # Project Steward
@@ -54,6 +54,12 @@ Then classify risk (Low / Medium / High) using `references/risk-tiers.md` — th
 
 Completion is defined by `references/definition-of-done.md`. Documentation is part of the definition of done.
 
+## Reporting to the user
+
+The project owner may not read code. After every non-trivial task, deliver a plain-language report — what changed functionally, how it was verified, what could break, and its implications (cost, security, maintenance) — and demonstrate user-visible changes with real output or screenshots, not just passing tests. Follow `references/reporting-to-user.md`.
+
+Any change that introduces or increases spending follows `references/cost-policy.md`; recurring costs always require explicit user approval.
+
 ## Workflow selection
 
 For managed work, load the matching workflow and use it as an execution checklist, not as bureaucracy:
@@ -63,6 +69,7 @@ For managed work, load the matching workflow and use it as an execution checklis
 - `workflows/hotfix.md`
 - `workflows/release.md`
 - `workflows/project-bootstrap.md`
+- `workflows/deploy.md` — putting a project online or updating a deployed environment
 - `workflows/improve-skill.md` — for improving Project Steward itself
 
 ## Technology profile selection
@@ -71,6 +78,7 @@ Inspect the repository and load `profiles/detection.md` to select profiles. Load
 
 - `profiles/python.md`
 - `profiles/fastapi.md`
+- `profiles/node-typescript.md`
 - `profiles/docker.md`
 - `profiles/terraform.md`
 - `profiles/ai-llm.md`
@@ -85,7 +93,9 @@ Load these as needed for the task at hand:
 - `references/git-workflow.md` — branches, worktrees, commits, merge strategy, git safety
 - `references/risk-tiers.md` — risk classification and required process per tier
 - `references/definition-of-done.md` — completion criteria
-- `references/scaling-model.md` — Stage 0–3 governance maturity model
+- `references/scaling-model.md` — Stage 0–3 governance maturity model and solo maintainer mode
+- `references/reporting-to-user.md` — plain-language end-of-task reports and demonstration rules
+- `references/cost-policy.md` — approval and documentation rules for anything that costs money
 - `references/testing-policy.md`
 - `references/documentation-standard.md`
 - `references/security-policy.md`

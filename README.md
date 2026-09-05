@@ -46,6 +46,8 @@ Start lightweight. Add governance as risk, contributors, users, or operational i
 
 The skill intentionally separates reusable engineering discipline from repository-specific product context.
 
+It is also designed for owners who do not read code: every non-trivial task ends with a plain-language report and a demonstration of the real behavior, anything that costs money requires explicit approval, and solo repositories replace human code review with agent self-verification plus owner validation of behavior.
+
 ## Security automation
 
 The skill includes defense-in-depth guidance and templates for:

@@ -1,0 +1,11 @@
+# CODEOWNERS — required reviewers per path.
+# Only needed once the repository has more than one contributor (Stage 2+).
+# Syntax: <pattern> <owner> — last matching pattern wins.
+
+# Default owner for everything:
+* @your-github-username
+
+# Examples of path-specific ownership:
+# /docs/          @your-github-username
+# /.github/       @your-github-username
+# /src/security/  @security-owner

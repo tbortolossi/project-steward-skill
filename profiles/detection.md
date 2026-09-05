@@ -65,11 +65,18 @@ Indicator:
 Load:
 - `github-actions.md`
 
+### Node / TypeScript
+Any of:
+- `package.json`
+- `tsconfig.json`
+
+Load:
+- `node-typescript.md`
+
 ### Stacks without a dedicated profile
 
 Common indicators with no profile yet:
 
-- Node/TypeScript: `package.json`, `tsconfig.json`
 - Go: `go.mod`
 - Rust: `Cargo.toml`
 

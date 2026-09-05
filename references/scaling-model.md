@@ -41,6 +41,15 @@ Add:
 - architecture documentation
 - operational/troubleshooting guide
 
+## Solo maintainer mode
+
+At any stage, when the repository has a single maintainer and no human code reviewers:
+
+- Pull requests remain useful as checkpoints, but their purpose shifts: the agent summarizes and self-verifies the change instead of waiting for human code review.
+- Human review is replaced by the plain-language report and demonstration defined in `references/reporting-to-user.md` — the owner validates behavior, not code.
+- Skip team-only ceremony (CODEOWNERS, review-approval gates) until a second contributor exists.
+- Everything else still applies: tests, documentation, security checks, and approval rules for high-risk changes do not relax in solo mode.
+
 ## Stage 3 — Production project
 
 Add:
