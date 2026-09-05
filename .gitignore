@@ -1,0 +1,10 @@
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor artifacts
+.idea/
+*.swp
+
+# Local agent state
+.claude/settings.local.json

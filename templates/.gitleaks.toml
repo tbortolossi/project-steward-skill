@@ -1,0 +1,7 @@
+title = "Project Gitleaks Configuration"
+
+[allowlist]
+description = "Project-level reviewed exclusions"
+paths = [
+  '''(^|/)tests?/fixtures/synthetic/''',
+]

@@ -1,0 +1,32 @@
+# Secrets / local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Infrastructure state
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Potentially sensitive diagnostic/export artifacts
+*.pcap
+*.pcapng
+*.har
+*.sqlite
+*.db
+*.dump
+
+# Local support / debug artifacts
+support-bundle*
+debug-output*
