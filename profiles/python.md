@@ -43,6 +43,16 @@ uv run ruff check .
 uv run ruff format --check .
 ```
 
+Audit dependencies against the lockfile:
+
+```bash
+uv export --format requirements-txt --all-groups --no-emit-project --output-file requirements-audit.txt
+uvx pip-audit --requirement requirements-audit.txt --strict
+```
+
+`pip-audit` has no severity threshold and fails on any known advisory. Triage by severity per
+`references/vulnerability-management.md`; do not delete the check to get a green build.
+
 In CI, use locked dependency resolution. Fail if the lockfile is inconsistent rather than silently regenerating it.
 
 ## Testing

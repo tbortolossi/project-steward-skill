@@ -6,6 +6,31 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-09-07
+
+Closes the gap where Project Steward asked about dependency vulnerabilities but never checked for them automatically. See `docs/skill-improvements/SIP-0001-dependency-vulnerability-scanning.md`.
+
+### Added
+
+- `references/vulnerability-management.md`: continuous dependency vulnerability scanning — severity-based response, per-ecosystem tooling, mandatory weekly scheduled scans, triage order, suppression rules (named advisory, stated reason, expiry date), and the explicit limits of dependency scanning.
+- `templates/.github/workflows/dependency-audit.yml` (Python/uv + `pip-audit`) and `templates/.github/workflows/dependency-audit-node.yml` (`npm audit`), both triggered on pull request, on push to the default branch, weekly on a schedule, and manually. These are the skill's first scheduled workflow templates.
+- `docs/skill-improvements/` for accepted SIPs, starting with SIP-0001.
+- Definition of Done item: no new high/critical dependency advisory introduced by the change.
+- Concrete audit commands in `profiles/python.md` and `profiles/node-typescript.md`; container image scanning promoted from a Stage 3 suggestion to a baseline expectation in `profiles/docker.md`.
+- "Scheduled security jobs" section in `profiles/github-actions.md`, with dependency audit and secret scan added to the baseline pipeline.
+- "Dependency alerts" section in `references/github-governance.md` separating Dependabot *version updates* (routine upgrade PRs, configured by `dependabot.yml`) from Dependabot *alerts* (a repository setting that must be enabled explicitly, and which the config file does not provide).
+
+### Changed
+
+- `SKILL.md`: new "Dependency vulnerabilities" section and `references/vulnerability-management.md` wired into the reference list.
+- `references/dependency-policy.md`: vulnerability checks are no longer a one-time question asked at adoption; ongoing monitoring is now explicit.
+- `references/bootstrap-checklist.md`: vague "security checks where useful" replaced by a secret scan and a scheduled dependency vulnerability scan; Dependabot alerts added as a separate checklist item.
+- `references/scaling-model.md`: dependency scanning and alerts moved from Stage 3 "security scanning" down to Stage 1; Stage 3 now covers image scanning, SBOM, and application security scanning.
+- `references/project-health.md`: dependency and security review now name the audit command and require reviewing accumulated suppressions.
+- `references/security-policy.md`: dependency security extended past adoption; explicit prohibition on muting an audit to make CI green.
+- `workflows/release.md`: releases require a freshly run dependency audit, since the last CI run may predate a new advisory.
+- `templates/.github/dependabot.yml`: header comment clarifying that the file provides version updates only, not alerts and not a merge gate.
+
 ## [0.7.0] - 2026-09-05
 
 ### Added

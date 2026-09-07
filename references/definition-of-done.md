@@ -9,6 +9,7 @@ Use this default Definition of Done unless the repository overrides it.
 - [ ] Formatting/linting passes
 - [ ] Type checking passes if configured
 - [ ] Security checks pass if configured
+- [ ] No new high/critical dependency advisory introduced by this change
 - [ ] Documentation updated
 - [ ] Config/example files updated if needed
 - [ ] No secrets or debug artifacts committed

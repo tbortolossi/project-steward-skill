@@ -31,7 +31,8 @@ Assess each area as Green / Amber / Red.
 
 - secret scanning enabled;
 - sensitive-data review policy present;
-- dependency alerts reviewed;
+- Dependabot alerts enabled and triaged, not merely accumulating;
+- dependency audit job present and running on schedule, not only on pull requests;
 - no known leaked credentials;
 - no unnecessary privileged CI permissions;
 - security-sensitive changes documented.
@@ -39,7 +40,9 @@ Assess each area as Green / Amber / Red.
 ### Dependencies
 
 - unsupported dependencies;
-- known vulnerabilities;
+- known vulnerabilities — run the ecosystem's audit command rather than assuming CI covered it
+  (`references/vulnerability-management.md`);
+- suppressed advisories: still justified, or expired and quietly permanent?
 - stale major versions;
 - abandoned packages.
 

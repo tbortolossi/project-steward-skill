@@ -101,6 +101,7 @@ Load these as needed for the task at hand:
 - `references/security-policy.md`
 - `references/data-leak-prevention.md`
 - `references/dependency-policy.md`
+- `references/vulnerability-management.md` — continuous dependency vulnerability scanning, severity thresholds, triage
 - `references/release-policy.md`
 - `references/bootstrap-checklist.md`
 - `references/github-governance.md`
@@ -144,6 +145,12 @@ Before committing or publishing repository changes:
 - use GitHub native secret scanning/push protection and a scanner such as Gitleaks for defense in depth.
 
 A clean secret scan does not prove absence of confidential or personal data. Details in `references/data-leak-prevention.md`.
+
+## Dependency vulnerabilities
+
+A dependency that was safe when adopted does not stay safe. Every repository with a lockfile runs a dependency vulnerability scan in CI — on pull requests **and** on a weekly schedule, because advisories appear while the code sits still — and enables dependency alerts, which are a separate setting from Dependabot version updates.
+
+Fail the build on high/critical; report lower severities. Never delete, mute, or downgrade an audit merely to make CI green. Full policy, per-ecosystem commands, triage, and suppression rules in `references/vulnerability-management.md`.
 
 ## Skill evolution
 

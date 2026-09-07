@@ -26,6 +26,10 @@ Before adding a dependency, consider:
 - transitive dependency cost;
 - whether equivalent capability already exists.
 
+Adoption is only the first check. Dependencies must also be scanned continuously for advisories
+published after they were adopted — see `references/vulnerability-management.md`. Never remove,
+mute, or weaken a dependency audit merely to make CI green.
+
 ## Security-sensitive changes
 
 Changes affecting authentication, authorization, cryptography, secrets, webhooks, deserialization, file upload, command execution, networking, or trust boundaries require elevated review.

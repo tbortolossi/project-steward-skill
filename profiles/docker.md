@@ -40,9 +40,12 @@ Define:
 
 Build the container in CI when containers are part of the supported delivery model.
 
-For production-grade projects, consider:
+Scan built images with a container scanner such as Trivy or Grype. Dependency auditing covers
+declared application dependencies only; it cannot see vulnerable operating-system packages in the
+base image. Severity thresholds and triage follow `references/vulnerability-management.md`.
 
-- vulnerability scanning;
+For production-grade projects, also consider:
+
 - SBOM generation;
 - image signing;
 - immutable tags/digests.

@@ -1,3 +1,12 @@
+# Dependabot VERSION UPDATES: routine upgrade pull requests.
+#
+# This file does NOT enable vulnerability alerts. Dependabot alerts are a
+# separate repository setting (Security -> Code security), and they must be
+# enabled explicitly. See references/github-governance.md.
+#
+# Neither mechanism gates a pull request; the dependency audit workflow does.
+# See templates/.github/workflows/dependency-audit.yml.
+
 version: 2
 
 updates:

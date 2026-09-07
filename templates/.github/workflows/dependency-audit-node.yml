@@ -1,0 +1,51 @@
+# Dependency vulnerability scan for Node / TypeScript projects.
+#
+# Runs on pull requests, on pushes to the default branch, weekly on a schedule,
+# and on demand. The schedule matters: dependencies acquire new advisories while
+# the repository sits still, so a pull-request-only scan protects nothing once
+# the project goes quiet.
+#
+# For pnpm, replace the install step with pnpm/action-setup + `pnpm install
+# --frozen-lockfile` and the audit steps with `pnpm audit` / `pnpm audit
+# --audit-level high`.
+#
+# See references/vulnerability-management.md.
+
+name: Dependency Audit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    # Weekly, Monday 06:00 UTC.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Replace with `node-version-file: ".nvmrc"` once the repository
+          # declares its supported Node version.
+          node-version: "lts/*"
+          cache: "npm"
+
+      - name: Install from lockfile
+        run: npm ci
+
+      # Full report for visibility. Moderate and low findings are recorded here
+      # but must not fail the build: a scanner that fails constantly gets muted.
+      - name: Report all advisories
+        run: npm audit || true
+
+      # The gate. High and critical findings fail the build.
+      - name: Fail on high and critical advisories
+        run: npm audit --audit-level=high
