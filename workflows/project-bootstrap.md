@@ -29,23 +29,39 @@ Do not impose Stage 3 controls on a Stage 0 experiment.
 
 ## 3. Establish baseline
 
-Create or improve:
+Create or improve **only what the stage from step 2 justifies**. Creating every file below in a
+Stage 0 experiment is the over-engineering that step 2 exists to prevent.
+
+Stage 0 — Scratch:
 
 - README;
 - `.gitignore`;
+- dependency manifest/lockfile.
+
+Stage 1 — Personal, adding:
+
 - `.editorconfig`;
-- dependency manifest/lockfile;
 - tests;
 - lint/format;
 - `.env.example`;
-- CONTRIBUTING;
+- LICENSE;
 - SECURITY;
+- CI, including a dependency vulnerability scan;
+- GitHub issue/PR templates.
+
+Stage 2 — Shared, adding:
+
+- CONTRIBUTING;
 - PROJECT;
 - ROADMAP;
 - CHANGELOG;
+- CODEOWNERS;
 - architecture documentation;
-- GitHub issue/PR templates;
-- CI.
+- ADR folder.
+
+Stage 3 — Production: see `references/scaling-model.md`.
+
+The full item list with checkboxes is in `references/bootstrap-checklist.md`.
 
 ## 4. Add technology-specific controls
 

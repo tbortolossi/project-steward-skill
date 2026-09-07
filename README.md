@@ -7,11 +7,26 @@ It provides a lightweight but scalable operating model for repositories that may
 ## Included
 
 - `SKILL.md` — skill entry point (YAML frontmatter + operating model router)
+- `OPERATING-GUIDE.md` — how to work with the skill day to day, and what to expect from it
 - `references/` — reusable engineering policies
 - `workflows/` — step-by-step execution checklists per change type
 - `profiles/` — technology-specific baselines with automatic detection
 - `templates/` — repository bootstrap files
 - `docs/skill-improvements/` — accepted Skill Improvement Proposals (SIPs) documenting why the skill changed
+- `scripts/check_skill.py` — structural checks run by this repository's own CI
+
+## Developing this skill
+
+The repository holds documentation and templates rather than application code, so its CI checks structure rather than behavior: templates parse as YAML, internal file references resolve, `SKILL.md` keeps the frontmatter Claude Code needs for discovery, and `VERSION` agrees with `CHANGELOG.md`.
+
+Run the same checks locally before committing:
+
+```bash
+python -m pip install pyyaml
+python scripts/check_skill.py
+```
+
+A skill that prescribes CI, secret scanning, and dependency hygiene should apply them to itself.
 
 ## Installation
 

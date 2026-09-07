@@ -1,0 +1,33 @@
+# Secret scan for the skill repository itself.
+#
+# This repository holds documentation and templates, not credentials, which is
+# exactly the situation in which a stray token goes unnoticed. Adapted from
+# templates/.github/workflows/gitleaks.yml.
+
+name: Secret Scan
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    # Weekly, Monday 06:00 UTC.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Scan repository
+        uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

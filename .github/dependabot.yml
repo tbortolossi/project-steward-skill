@@ -1,0 +1,16 @@
+# Dependabot version updates for the skill repository itself.
+#
+# There is no application dependency manifest here, but the CI workflows pin
+# GitHub Actions, and those are dependencies with their own advisories.
+#
+# As documented in references/github-governance.md, this file does NOT enable
+# Dependabot alerts. Those are a separate repository setting.
+
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
