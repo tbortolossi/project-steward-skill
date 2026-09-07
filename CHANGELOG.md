@@ -6,6 +6,31 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-09-07
+
+The skill now applies its own rules to itself, plus the first self-audit. Findings and evidence in `docs/audits/2026-09-07-self-audit.md`.
+
+### Security
+
+- Updated every stale pinned version. All were behind upstream, several by multiple majors, and because these live in `templates/` the staleness propagated into every repository bootstrapped from them: `actions/checkout` v4→v7, `actions/setup-python` v5→v7, `actions/setup-node` v4→v7, `astral-sh/setup-uv` v6→v10, `gitleaks/gitleaks-action` v2→v3, `gitleaks` pre-commit v8.28.0→v8.30.1, `ruff-pre-commit` v0.12.11→v0.16.6. The `setup-uv` and `ruff-pre-commit` upgrades were verified against upstream (`enable-cache` input and `ruff-check`/`ruff-format` hook ids still present) rather than assumed compatible.
+- `references/self-audit.md`: new obsolescence question covering pinned versions in `templates/`, and why Dependabot is structurally blind to them — it scans a repository's real `.github/workflows/`, not workflow files inside a templates directory.
+
+### Added
+
+- CI for the skill repository itself: `.github/workflows/ci.yml` (structural checks), `.github/workflows/gitleaks.yml` (secret scan, on schedule), `.github/dependabot.yml` (GitHub Actions ecosystem).
+- `scripts/check_skill.py`: verifies templates parse as YAML, internal references resolve, `SKILL.md` keeps the frontmatter Claude Code needs for discovery, `VERSION` agrees with `CHANGELOG.md`, and every router entry points at a real file. Validated by deliberately breaking four things and confirming each was caught.
+- `AGENTS.md` for the skill repository, recording the constraints that are easy to violate here: SKILL.md stays a router, template pins go stale silently, stage definitions must agree across files.
+- `docs/audits/` with the first self-audit report.
+
+### Fixed
+
+- `workflows/project-bootstrap.md` contradicted itself: step 2 classified the repository into Stage 0–3 and warned against imposing Stage 3 controls on a Stage 0 experiment, then step 3 listed a flat fifteen-file baseline ignoring that classification. Following it literally buried every scratch experiment in Stage 2 governance. Step 3 is now stage-aware, with `references/scaling-model.md` as the authority.
+- `OPERATING-GUIDE.md` was referenced from nowhere and effectively invisible; it is now listed in `README.md` and covered by the reference check.
+
+### Changed
+
+- `README.md`: documents the repository's own development commands, as the skill requires of every project.
+
 ## [0.8.0] - 2026-09-07
 
 Closes the gap where Project Steward asked about dependency vulnerabilities but never checked for them automatically. See `docs/skill-improvements/SIP-0001-dependency-vulnerability-scanning.md`.
