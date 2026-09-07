@@ -26,6 +26,8 @@ Add:
 - lint/format
 - `.env.example`
 - CI
+- dependency vulnerability scan in CI, on pull requests and weekly
+- dependency alerts enabled
 - issue/PR templates
 
 ## Stage 2 — Shared project
@@ -57,7 +59,8 @@ Add:
 - threat model where relevant
 - release automation
 - SBOM where relevant
-- security scanning
+- container image scanning and documented remediation timeframes per severity
+- application security scanning beyond dependencies (SAST, secrets, IaC)
 - observability
 - backup/recovery
 - deployment runbooks

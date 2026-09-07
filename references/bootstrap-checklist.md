@@ -37,7 +37,8 @@ Use this checklist when creating or professionalizing a repository.
 - [ ] lint
 - [ ] test
 - [ ] build/package if relevant
-- [ ] security checks where useful
+- [ ] secret scan
+- [ ] dependency vulnerability scan, on pull requests and on a weekly schedule
 
 ## Documentation
 
@@ -51,7 +52,9 @@ Use this checklist when creating or professionalizing a repository.
 ## GitHub automation
 
 - [ ] CI workflow
-- [ ] Dependabot or equivalent dependency automation
+- [ ] Dependabot version updates or equivalent dependency automation
+- [ ] Dependabot alerts enabled — a separate repository setting; version updates do not provide it
+- [ ] scheduled dependency audit workflow
 - [ ] Gitleaks or equivalent secret scanner
 - [ ] native GitHub secret scanning enabled when available
 - [ ] push protection enabled when available
@@ -63,7 +66,8 @@ Use this checklist when creating or professionalizing a repository.
 - [ ] sensitive-data leak review
 - [ ] dangerous artifact/file patterns excluded or reviewed
 - [ ] no tracked credentials
-- [ ] dependency review
+- [ ] dependency review at adoption
+- [ ] continuous dependency vulnerability monitoring (`references/vulnerability-management.md`)
 - [ ] least privilege
 - [ ] security reporting process
 

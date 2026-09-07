@@ -11,6 +11,7 @@ It provides a lightweight but scalable operating model for repositories that may
 - `workflows/` — step-by-step execution checklists per change type
 - `profiles/` — technology-specific baselines with automatic detection
 - `templates/` — repository bootstrap files
+- `docs/skill-improvements/` — accepted Skill Improvement Proposals (SIPs) documenting why the skill changed
 
 ## Installation
 
@@ -57,10 +58,13 @@ The skill includes defense-in-depth guidance and templates for:
 - pre-commit secret checks;
 - CI secret scans;
 - sensitive-data/artifact review;
-- Dependabot;
+- Dependabot version updates and alerts (distinct mechanisms — the config file does not enable alerts);
+- dependency vulnerability scanning in CI, on pull requests and on a weekly schedule;
 - branch protection guidance.
 
 Secret scanning is intentionally treated separately from general sensitive-data detection: credentials can often be detected reliably, while PII/customer/internal-data detection is heuristic and still requires review.
+
+Dependency scanning runs on a schedule, not only on pull requests: advisories are published against code that has not changed, so a repository that goes quiet would otherwise stop being checked.
 
 
 ## Self-improvement

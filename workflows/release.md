@@ -5,7 +5,7 @@
 1. Confirm target version.
 2. Review `Unreleased` changelog entries.
 3. Confirm CI is green.
-4. Confirm required security checks pass.
+4. Confirm required security checks pass, including a freshly run dependency vulnerability audit — the last CI run may predate a newly published advisory (`references/vulnerability-management.md`).
 5. Confirm install/upgrade instructions.
 6. Confirm migration steps.
 7. Confirm breaking changes are explicit.

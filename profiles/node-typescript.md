@@ -42,6 +42,17 @@ The npm ecosystem invites dependency sprawl. Before adding a package:
 - prefer well-maintained, widely used packages over micro-packages;
 - check license and maintenance status for anything load-bearing.
 
+Audit before opening a pull request, and gate CI on the same command:
+
+```bash
+npm audit                        # full report
+npm audit --audit-level=high     # the gate: fails on high and critical
+```
+
+Use `pnpm audit --audit-level high` for pnpm. The npm ecosystem produces a high volume of transitive
+advisories with no available fix; `references/vulnerability-management.md` defines how to triage them
+instead of muting the scan.
+
 ## Testing
 
 A bug fix should normally add a regression test. Test happy paths, failures, input validation, and security-sensitive behavior.

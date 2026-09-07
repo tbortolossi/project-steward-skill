@@ -1,0 +1,48 @@
+# Dependency vulnerability scan for Python projects managed with uv.
+#
+# Runs on pull requests, on pushes to the default branch, weekly on a schedule,
+# and on demand. The schedule matters: dependencies acquire new advisories while
+# the repository sits still, so a pull-request-only scan protects nothing once
+# the project goes quiet.
+#
+# See references/vulnerability-management.md.
+
+name: Dependency Audit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    # Weekly, Monday 06:00 UTC.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Export locked dependencies
+        run: |
+          uv export --format requirements-txt --all-groups --no-emit-project \
+            --output-file requirements-audit.txt
+
+      # pip-audit has no severity threshold, so this fails on any known
+      # advisory. Python advisory volume is low enough that this stays
+      # actionable. Triage findings by severity per the policy; do not lower
+      # the bar by deleting this step.
+      - name: Audit dependencies
+        run: uvx pip-audit --requirement requirements-audit.txt --strict

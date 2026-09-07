@@ -14,9 +14,24 @@ Recommended for shared or important repositories:
 - prevent force pushes to protected branches;
 - prevent branch deletion where appropriate;
 - enable automatic branch deletion after merge;
-- enable dependency alerts;
+- enable Dependabot alerts and Dependabot security updates;
 - enable secret scanning where available;
 - enable push protection where available.
+
+## Dependency alerts
+
+Dependabot **alerts** and Dependabot **version updates** are different features and are routinely
+confused.
+
+- Version updates are configured by `.github/dependabot.yml` and open routine upgrade pull requests.
+  They are hygiene, not security, and they do not report vulnerabilities.
+- Alerts are a repository setting (Security → Code security). They match the lockfile against the
+  advisory database and, with security updates enabled, open targeted fix pull requests.
+
+Enable alerts explicitly. Committing a `dependabot.yml` does not enable them.
+
+Alerts are also not a merge gate: they fire after code lands. Pair them with the dependency audit job
+in CI defined by `references/vulnerability-management.md`, which blocks new exposure before merge.
 
 ## Secret scanning
 
