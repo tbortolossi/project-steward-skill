@@ -78,6 +78,8 @@ Use this checklist when creating or professionalizing a repository.
 - [ ] changelog
 - [ ] tag convention
 - [ ] release process
+- [ ] `[Unreleased]` section present in the changelog
+- [ ] initial release tagged and published, if the repository publishes an artifact
 
 ## Scaling
 

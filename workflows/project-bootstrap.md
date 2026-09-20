@@ -61,6 +61,11 @@ Stage 2 — Shared, adding:
 
 Stage 3 — Production: see `references/scaling-model.md`.
 
+If the repository publishes an artifact others install, add the release
+items — version source, `CHANGELOG.md` with `[Unreleased]`, tag convention
+— whatever its stage. See "Publishing changes the requirement" in
+`references/scaling-model.md`.
+
 The full item list with checkboxes is in `references/bootstrap-checklist.md`.
 
 ## 4. Add technology-specific controls
@@ -79,12 +84,22 @@ Produce a prioritized list:
 
 Avoid refactoring the entire repository merely to match a preferred template.
 
-## 6. Finish with a health summary
+## 6. Release, if the repository publishes
+
+A bootstrap is not finished at the last file created. If the repository
+publishes something others install, hand off to `workflows/release.md` and
+cut the first release: version in the manifest, changelog entry, annotated
+tag, release notes.
+
+A published artifact whose version exists in no tag cannot be reported
+against, bisected, or rolled back to.
+
+## 7. Finish with a health summary
 
 Report:
 
 - what was added;
 - what remains;
-- current maturity stage;
+- current maturity stage, and the released version if the repository publishes;
 - high-risk gaps;
 - next recommended improvement.

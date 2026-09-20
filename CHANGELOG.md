@@ -6,6 +6,28 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-09-20
+
+Publishing an artifact and having contributors are independent, and the
+maturity model only measured the second. Details and evidence in
+`docs/skill-improvements/SIP-0002-publication-triggers-release-discipline.md`.
+
+### Added
+
+- `references/scaling-model.md`: a publication trigger. When a repository
+  publishes an artifact others install or depend on, the release items —
+  version source, `CHANGELOG.md` with `[Unreleased]`, annotated tags,
+  release notes — apply at whatever stage it is at, instead of arriving
+  with Stage 2. A public repository that is only read does not qualify.
+- `workflows/project-bootstrap.md`: a release step before the health
+  summary, handing off to `workflows/release.md`. The workflow previously
+  created files, audited, and stopped — it never mentioned a release, a tag
+  or a version, so a repository could be bootstrapped, published and
+  installed while its version existed in no tag. The health summary now
+  reports the released version.
+- `references/bootstrap-checklist.md`: `[Unreleased]` section present, and
+  initial release tagged and published.
+
 ## [0.9.0] - 2026-09-07
 
 The skill now applies its own rules to itself, plus the first self-audit. Findings and evidence in `docs/audits/2026-09-07-self-audit.md`.

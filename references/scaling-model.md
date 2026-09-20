@@ -52,6 +52,26 @@ At any stage, when the repository has a single maintainer and no human code revi
 - Skip team-only ceremony (CODEOWNERS, review-approval gates) until a second contributor exists.
 - Everything else still applies: tests, documentation, security checks, and approval rules for high-risk changes do not relax in solo mode.
 
+## Publishing changes the requirement, at any stage
+
+Stage measures how many people build the repository. It says nothing about
+whether anyone *installs* what it produces. These are independent, and a
+one-person Stage 1 repository that publishes a plugin, a package, a
+container image or an action has consumers who need to know which version
+they have and what changed in it.
+
+When a repository publishes an artifact others install or depend on, the
+release items apply whatever its stage:
+
+- a defined version source, and SemVer;
+- `CHANGELOG.md` with an `[Unreleased]` section — not deferred to Stage 2;
+- annotated tags on released versions;
+- release notes where the platform has them.
+
+A public repository that is only read does not qualify. Stage still governs
+everything else: publishing does not pull a scratch experiment into Stage 2
+ceremony.
+
 ## Stage 3 — Production project
 
 Add:
