@@ -58,3 +58,5 @@ Commit example:
 `fix: handle expired session token correctly`
 
 Update changelog when user-visible behavior changes.
+
+After integration, refresh and verify the environments that track the branch (`references/git-workflow.md`, "After integration").

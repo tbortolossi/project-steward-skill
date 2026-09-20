@@ -18,6 +18,7 @@ Use this default Definition of Done unless the repository overrides it.
 - [ ] PR description complete
 - [ ] Known risks documented
 - [ ] Rollback path documented when relevant
+- [ ] Environments tracking the integrated branch rebuilt or redeployed, and verified
 
 ## Completion criteria
 
@@ -32,5 +33,6 @@ A task is complete only when:
 - The change is committed cleanly.
 - PR/release metadata is updated when applicable.
 - Temporary worktrees/branches are cleaned after integration.
+- Environments that track the integrated branch run the new version, verified (`references/git-workflow.md`, "After integration").
 
 Documentation is part of the definition of done. A feature is not complete when code works but docs/tests are missing.

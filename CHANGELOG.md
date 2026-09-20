@@ -6,6 +6,27 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.11.0] - 2026-09-20
+
+A merged change is not running anywhere until the environments that track
+the branch are rebuilt, and nothing said so. Details and evidence in
+`docs/skill-improvements/SIP-0003-refresh-environments-after-integration.md`.
+
+### Added
+
+- `references/git-workflow.md`: an "After integration" section. Every
+  environment that tracks the integrated branch runs the new version before
+  the task is reported done, preferably through a versioned trigger set up
+  the first time it is missing, and verified. Production is excluded from
+  the automatic path.
+- `references/definition-of-done.md`: checklist item and completion
+  criterion for environments tracking the integrated branch.
+- `workflows/deploy.md`: a "Refresh after integration" step describing the
+  versioned-hooks pattern for local previews and the CI-on-push pattern for
+  remote environments, with their safety rules.
+- `workflows/new-feature.md`, `workflows/bugfix.md`: completion points to
+  the after-integration rule.
+
 ## [0.10.0] - 2026-09-20
 
 Publishing an artifact and having contributors are independent, and the

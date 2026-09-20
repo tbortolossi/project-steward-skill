@@ -72,6 +72,16 @@ Default:
 
 Do not create unnecessary merge commits solely from local synchronization.
 
+## After integration
+
+Merging is not the end of the change. Every environment that tracks the integrated branch — a local preview container, a staging host, a push-to-deploy target — must run the new version before the task is reported done:
+
+- prefer an automated trigger over remembering: a versioned git hook for local or preview environments, a CI job on push to the default branch for remote ones (`workflows/deploy.md`, "Refresh after integration");
+- if no trigger exists the first time this matters, set one up as part of the change and document how to enable it;
+- verify the refreshed environment with a smoke test or a real request, and say in the report which version is running.
+
+Production is never refreshed by this rule alone; it keeps the preconditions, approval and rollback path of `workflows/deploy.md`.
+
 ## Safety
 
 Before destructive Git commands such as hard reset, branch deletion, forced push, or aggressive clean:

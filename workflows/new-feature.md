@@ -93,3 +93,5 @@ Prepare PR with:
 - linked issue.
 
 A feature is not complete when code works but docs/tests are missing.
+
+After integration, refresh and verify the environments that track the branch (`references/git-workflow.md`, "After integration").
