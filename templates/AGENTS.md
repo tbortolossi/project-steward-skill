@@ -19,7 +19,9 @@ every code change, including small ones described only by their outcome.
 - Update documentation in the same change, including the matching requirement in `PROJECT.md`.
 - Cite requirement IDs (`FR-n`) in pull requests when there is one.
 - Do not commit secrets. Do not read `.env` or credential files, or ask for secret values: work
-  from the names in `.env.example`.
+  from the names in `.env.example`. Non-secret settings (ids, regions, paths, model names) may be
+  written to `.env` with Project Steward's `scripts/set_env.py`, which never shows the file; secret
+  values are set by the owner.
 - Do not disable quality/security checks to make CI pass.
 - Use Conventional Commits.
 

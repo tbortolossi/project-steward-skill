@@ -33,3 +33,6 @@ jobs:
 
       - name: Structural checks
         run: python scripts/check_skill.py
+
+      - name: Script tests
+        run: python -m unittest discover -s scripts -p 'test_*.py'
