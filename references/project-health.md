@@ -54,6 +54,14 @@ Assess each area as Green / Amber / Red.
 - architecture reflects reality;
 - troubleshooting covers common failures.
 
+### Agent instructions
+
+- `AGENTS.md` present, with an "Agent autonomy" section;
+- `CLAUDE.md` imports `@AGENTS.md` when both exist (`references/claude-code.md`).
+
+A gap here does not block a task: mention it in one line of the end-of-task report and offer to fix
+it.
+
 ### Delivery
 
 - changelog current;

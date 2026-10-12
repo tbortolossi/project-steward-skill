@@ -40,6 +40,10 @@ Create a SIP using:
 
 ## 5. Approval behavior
 
+### Requested by the owner
+
+The explicit request is the approval: apply, release and install in one pass (`references/skill-evolution-policy.md`, "Owner-requested changes").
+
 ### Low risk
 
 May auto-apply when confidence is high.
@@ -83,7 +87,7 @@ Update:
 - `VERSION`
 - `CHANGELOG.md`
 
-Use Semantic Versioning for Project Steward itself.
+Use Semantic Versioning for Project Steward itself. Tag the release, push it as the skill repository's autonomy section allows, and update the installed copy (`references/skill-evolution-policy.md`, "Source and installed copies").
 
 ## 9. Report
 
