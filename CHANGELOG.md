@@ -6,6 +6,28 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.15.0] - 2026-10-12
+
+The agent can now write non-secret settings into `.env` without reading
+it. Details in `docs/skill-improvements/SIP-0008-env-write-without-read.md`.
+
+### Added
+
+- `scripts/set_env.py`: add, replace (`--header` titles new ones) or remove
+  (`--unset`, with their comments) `.env` variables by name, print
+  names only, `--check` for presence; refuses secret-looking names and
+  values; keeps comments, other lines and file permissions. Unit tests
+  run in CI.
+
+### Changed
+
+- `references/secrets-management.md`, `references/claude-code.md`,
+  `templates/AGENTS.md`: the agent may write non-secret settings to
+  `.env` through `set_env.py`; reading `.env` stays forbidden and secret
+  values stay the owner's.
+- `templates/.claude/settings.json`: allow rule for `set_env.py`. The
+  `Read(.env)` deny rules are unchanged.
+
 ## [0.14.1] - 2026-10-12
 
 CI templates that fail on first use are fixed. Details in

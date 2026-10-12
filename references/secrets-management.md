@@ -62,6 +62,11 @@ Rules for choosing:
 - The agent does not read, print, or paste `.env` files, key files, or credential stores, and does
   not ask the owner to paste a secret into the conversation. When a command needs a secret, the
   owner runs it, or it runs through rung 2 injection.
+- The agent may **write** non-secret settings into `.env` (a project id, a region, a file path, a
+  model name, a port) with `scripts/set_env.py`, which adds or replaces a variable by name and
+  prints names only; `--check` reports which names are set, never their values. The script refuses
+  secret-looking names and values: API keys, tokens and passwords are still set by the owner.
+  Writing is safe where reading is not, because nothing of the file enters the agent's context.
 - In Claude Code, deny rules in `.claude/settings.json` back this up (`references/claude-code.md`,
   "Project setup"). They are a guard rail, not a vault: rung 2 and above keep plaintext off the disk
   entirely, which is the real protection.
