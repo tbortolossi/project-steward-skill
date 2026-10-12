@@ -39,6 +39,10 @@ question and a recommendation.
 remote branches that are not merged, production deploys, deleting data, recurring costs, weakening
 a security control. Ask every time, whatever the autonomy section says.
 
+When the section is missing, the question also offers to create it, with this preset recommended
+for a single owner: `push-topic-branches` and `open-pull-requests` set to `yes`, the rest `ask`.
+Write the section only from the owner's answer, so the question is not repeated in the next task.
+
 A grant never relaxes the other rules: a merge still requires green checks and the Definition of
 Done, and High-risk changes still require the user's decision (`references/risk-tiers.md`).
 

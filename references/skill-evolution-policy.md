@@ -160,6 +160,42 @@ Project Steward may auto-apply only low-risk improvements when all conditions ar
 
 Otherwise, create a proposal and request approval.
 
+## Owner-requested changes
+
+When the owner explicitly asks for a change to the skill — "add this to the skill", "le skill doit
+faire X", "fix the skill so that…" — the request is the approval, whatever the risk level. Do not
+ask again whether to make the change. In one pass:
+
+1. write the SIP with status "Accepted (requested by the owner)", quoting the request as evidence;
+2. implement it in the skill's source repository on a topic branch and run `scripts/check_skill.py`;
+3. merge, bump `VERSION`, update `CHANGELOG.md`, create the annotated tag;
+4. push as the skill repository's "Agent autonomy" section allows;
+5. update the installed copy (see below) and confirm its `VERSION`;
+6. report what changed and the new version.
+
+Limits:
+
+- The request covers what the owner asked for. Adjacent improvements noticed on the way follow the
+  normal risk levels.
+- A change that weakens a security, testing or approval rule, or adds a destructive action, is
+  stated in one sentence with its consequence and applied only after a yes. Never silent.
+- A complaint or observation ("it keeps asking me") is not a request: propose the change and apply
+  it when the owner agrees.
+- The agent never grants itself autonomy: entries in an "Agent autonomy" section are written by the
+  owner, or on the owner's explicit instruction for that entry.
+- The agent's harness may still refuse to edit instructions the agent itself runs under. Do not work
+  around it: hand the owner the exact change, or ask them to approve it interactively.
+
+## Source and installed copies
+
+The skill usually exists twice: the source repository where it is developed, and the installed copy
+the agent loads (`~/.claude/skills/project-steward/` in Claude Code), a clone of the same remote.
+
+- Change the source repository. If its location is unknown, ask the owner once and remember it.
+- Never edit the installed copy directly: it diverges from the source and the next update conflicts.
+- After a release, fast-forward the installed copy with `git pull --ff-only`, from the remote or, if
+  the push has not happened, from the local source repository.
+
 ## Repetition heuristic
 
 Repeated local adaptations are a signal for promotion.

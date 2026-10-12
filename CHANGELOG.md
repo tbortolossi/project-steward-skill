@@ -6,6 +6,28 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.13.0] - 2026-10-12
+
+Skill changes the owner asks for are applied, released and installed in
+one pass, and older repositories are offered the autonomy section. Details
+in `docs/skill-improvements/SIP-0005-owner-requested-upgrades.md`.
+
+### Added
+
+- `references/skill-evolution-policy.md`: "Owner-requested changes" — an
+  explicit request is the approval; limits on scope, security weakening,
+  self-granted autonomy and harness refusals. "Source and installed
+  copies" — change the source, never the installed copy, then
+  fast-forward the installed copy after each release.
+- `references/ai-agent-policy.md`: when the autonomy section is missing,
+  offer to create it with a recommended single-owner preset.
+- `references/project-health.md`: "Agent instructions" checks.
+
+### Changed
+
+- `workflows/improve-skill.md`: approval and version steps cover
+  owner-requested changes and the installed copy.
+
 ## [0.12.0] - 2026-10-12
 
 Make the skill work as a delegation target in Claude Code: it triggers on
