@@ -66,6 +66,8 @@ Avoid meaningless messages such as `update`, `fix stuff`, or `changes`.
 
 ## Merge strategy
 
+Whether the agent may push, open the pull request and merge on its own is set by the repository's "Agent autonomy" section (`references/ai-agent-policy.md`).
+
 Default:
 - squash merge for small feature/fix branches if commit history is noisy;
 - regular merge or rebase merge when individual commits carry meaningful history.

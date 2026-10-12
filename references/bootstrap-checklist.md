@@ -30,6 +30,8 @@ Use this checklist when creating or professionalizing a repository.
 - [ ] SECURITY
 - [ ] CODEOWNERS when shared
 - [ ] branch protection guidance
+- [ ] `AGENTS.md` with an "Agent autonomy" section filled with the owner's choices
+- [ ] `CLAUDE.md` importing `@AGENTS.md` when Claude Code is used
 
 ## CI
 

@@ -1,6 +1,7 @@
 # Repository Agent Instructions
 
-This repository uses the Project Steward workflow.
+This repository uses the Project Steward workflow. Agents should use the Project Steward skill for
+every code change, including small ones described only by their outcome.
 
 ## Before editing
 
@@ -19,6 +20,18 @@ This repository uses the Project Steward workflow.
 - Do not commit secrets.
 - Do not disable quality/security checks to make CI pass.
 - Use Conventional Commits.
+
+## Agent autonomy
+
+What the agent may do without asking. `yes` = do it when the task calls for it; `ask` = ask once
+per task. Force-push, production deploys and data deletion always require asking and cannot be
+granted here.
+
+- push-topic-branches: ask
+- open-pull-requests: ask
+- merge-to-default-branch: ask
+- tag-and-release: ask
+- deploy-non-production: ask
 
 ## Definition of Done
 

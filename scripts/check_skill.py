@@ -29,6 +29,9 @@ INTERNAL_PREFIXES = ("references/", "workflows/", "profiles/", "templates/", "sc
 # `docs/architecture.md` is advice to the user's project, not a file here.
 TARGET_REPO_PREFIXES = ("docs/architecture", "docs/adr", "docs/troubleshooting")
 
+# Claude Code truncates description + when_to_use beyond this many characters.
+LISTING_LIMIT = 1536
+
 REFERENCE_PATTERN = re.compile(
     r"`((?:references|workflows|profiles|templates|scripts|docs)/[A-Za-z0-9_./-]+)`"
 )
@@ -119,6 +122,21 @@ def check_skill_frontmatter(report: Report) -> None:
     report.check("has name", meta.get("name") == "project-steward", repr(meta.get("name")))
     description = meta.get("description") or ""
     report.check("has description", bool(description.strip()))
+    # Claude Code truncates description + when_to_use in its skill listing; past
+    # the limit the trigger phrases at the end silently stop matching.
+    listing = len(description) + len(meta.get("when_to_use") or "")
+    report.check(
+        f"trigger text fits the listing ({listing}/{LISTING_LIMIT} chars)",
+        listing <= LISTING_LIMIT,
+    )
+
+
+def check_claude_template(report: Report) -> None:
+    """Claude Code ignores AGENTS.md when a CLAUDE.md exists, unless it imports it."""
+    print("\nCLAUDE.md template imports AGENTS.md")
+    path = ROOT / "templates" / "CLAUDE.md"
+    first = path.read_text(encoding="utf-8").splitlines()[:1] if path.exists() else []
+    report.check("templates/CLAUDE.md starts with @AGENTS.md", first == ["@AGENTS.md"])
 
 
 def check_version_consistency(report: Report) -> None:
@@ -147,6 +165,7 @@ def main() -> int:
     check_yaml(report)
     check_references(report)
     check_skill_frontmatter(report)
+    check_claude_template(report)
     check_version_consistency(report)
     check_referenced_policies_exist(report)
 

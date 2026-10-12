@@ -47,7 +47,8 @@ Stage 1 — Personal, adding:
 - LICENSE;
 - SECURITY;
 - CI, including a dependency vulnerability scan;
-- GitHub issue/PR templates.
+- GitHub issue/PR templates;
+- `AGENTS.md` from `templates/AGENTS.md`, with the owner's choices in "Agent autonomy", and `CLAUDE.md` from `templates/CLAUDE.md` (`references/claude-code.md`).
 
 Stage 2 — Shared, adding:
 
