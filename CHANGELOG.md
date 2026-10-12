@@ -10,8 +10,8 @@ Project Steward follows Semantic Versioning.
 
 ### Fixed
 
-- Python bytecode (`scripts/__pycache__`) committed by mistake in 0.15.0 is
-  removed and ignored.
+- Python bytecode files committed by mistake in 0.15.0 are
+  removed, and bytecode is now ignored.
 
 ## [0.15.0] - 2026-10-12
 
