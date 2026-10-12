@@ -34,6 +34,7 @@ Assess each area as Green / Amber / Red.
 - Dependabot alerts enabled and triaged, not merely accumulating;
 - dependency audit job present and running on schedule, not only on pull requests;
 - no known leaked credentials;
+- secrets mechanism documented and matching the stage (`references/secrets-management.md`); no plaintext production secrets on developer machines;
 - no unnecessary privileged CI permissions;
 - security-sensitive changes documented.
 
@@ -52,12 +53,14 @@ Assess each area as Green / Amber / Red.
 - API/CLI docs current;
 - screenshots current;
 - architecture reflects reality;
-- troubleshooting covers common failures.
+- troubleshooting covers common failures;
+- `PROJECT.md` requirements match what the code does; `ROADMAP.md` shows the real current milestone.
 
 ### Agent instructions
 
 - `AGENTS.md` present, with an "Agent autonomy" section;
-- `CLAUDE.md` imports `@AGENTS.md` when both exist (`references/claude-code.md`).
+- `CLAUDE.md` imports `@AGENTS.md` when both exist (`references/claude-code.md`);
+- `.claude/settings.json` denies access to secret files when Claude Code is used.
 
 A gap here does not block a task: mention it in one line of the end-of-task report and offer to fix
 it.

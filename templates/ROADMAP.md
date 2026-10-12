@@ -1,12 +1,22 @@
 # Roadmap
 
+Delivery plan by milestone. Requirement IDs refer to `PROJECT.md`. Roadmap items are not promises
+unless explicitly committed.
+
 ## Now
 
-Work actively being delivered.
+### M0 — Walking skeleton
+
+Repository, CI green, the thinnest end-to-end path running on the real stack.
+
+- Exit criterion: <what the owner can run or see>
 
 ## Next
 
-Likely next work.
+### M1 — First useful version
+
+- FR-1, FR-2
+- Exit criterion: <what the owner can run or see>
 
 ## Later
 
@@ -16,4 +26,6 @@ Important ideas that are not currently committed.
 
 Interesting ideas that should not distract current delivery.
 
-Roadmap items are not promises unless explicitly committed.
+## Done
+
+- M0 — <date>, released as v0.1.0

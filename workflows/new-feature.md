@@ -14,6 +14,9 @@ Capture:
 - compatibility constraints;
 - security implications.
 
+Start from `PROJECT.md` when it exists: name the requirement (`FR-n`) the feature implements, or add
+a new one with its acceptance criteria and have the owner confirm it.
+
 If requirements are ambiguous in a way that changes product behavior, ask the user.
 
 ## 2. Scope control
@@ -76,7 +79,10 @@ For public APIs or CLIs, verify examples manually when practical.
 
 ## 7. Documentation
 
-Update all user-visible documentation affected by the feature.
+Update all user-visible documentation affected by the feature, using the "What goes where" table in
+`references/documentation-standard.md`: the requirement in `PROJECT.md`, the README, `.env.example`
+for new settings, the architecture for new components or trust boundaries, and `ROADMAP.md` when a
+milestone completes.
 
 For UI changes, update screenshots/mockups if maintained.
 
@@ -90,7 +96,7 @@ Prepare PR with:
 - risks;
 - screenshots/logs where useful;
 - migration notes;
-- linked issue.
+- linked issue and requirement ID.
 
 A feature is not complete when code works but docs/tests are missing.
 

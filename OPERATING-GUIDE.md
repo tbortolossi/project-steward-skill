@@ -13,6 +13,26 @@ Examples:
 
 Project Steward should infer and execute the appropriate workflow.
 
+## Starting a new project from an idea
+
+Open an empty folder and describe the idea: `J'ai une idée : une app qui…`. Project Steward then
+runs `workflows/project-inception.md`:
+
+1. restates the idea and asks a few questions that change what gets built (users, first version,
+   shape, data sensitivity, hosting and budget, throwaway or lasting);
+2. writes `PROJECT.md` — the product brief: vision, numbered functional and non-functional
+   requirements with acceptance criteria, non-goals, security and privacy — for you to approve;
+3. proposes a stack with one alternative; you choose, and the choice becomes the first ADR, together
+   with where secrets will live (`references/secrets-management.md`);
+4. writes `ROADMAP.md` as milestones, starting with a walking skeleton;
+5. bootstraps the repository: README, CI with secret and vulnerability scans, `CHANGELOG.md` at
+   `0.1.0`, `AGENTS.md` and `CLAUDE.md`, `.claude/settings.json` keeping secret files away from the
+   agent;
+6. builds the walking skeleton and shows it running.
+
+Afterwards every feature cites its requirement (`FR-n`) and updates the documents it affects in the
+same change.
+
 ## Expected behavior
 
 For normal engineering work, Project Steward should automatically:

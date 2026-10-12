@@ -11,6 +11,7 @@ Use this checklist when creating or professionalizing a repository.
 - [ ] dependency manifest
 - [ ] lockfile if applicable
 - [ ] `.env.example` if configuration is needed
+- [ ] secrets mechanism chosen and documented in the README (`references/secrets-management.md`)
 
 ## Development
 
@@ -32,6 +33,7 @@ Use this checklist when creating or professionalizing a repository.
 - [ ] branch protection guidance
 - [ ] `AGENTS.md` with an "Agent autonomy" section filled with the owner's choices
 - [ ] `CLAUDE.md` importing `@AGENTS.md` when Claude Code is used
+- [ ] `.claude/settings.json` denying access to secret files, when Claude Code is used
 
 ## CI
 
@@ -44,6 +46,9 @@ Use this checklist when creating or professionalizing a repository.
 
 ## Documentation
 
+- [ ] `PROJECT.md`: vision, users, numbered requirements, non-goals, security and privacy
+- [ ] `ROADMAP.md`: milestones with requirement IDs and exit criteria
+- [ ] first ADR (stack choice) for a project started from an idea
 - [ ] architecture overview
 - [ ] configuration reference
 - [ ] troubleshooting

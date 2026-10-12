@@ -13,7 +13,8 @@ Never commit:
 - production `.env` files;
 - sensitive customer data.
 
-Provide `.env.example` with placeholders where configuration is required.
+Provide `.env.example` with placeholders where configuration is required. Where secrets live instead,
+how they reach the code, and how that grows with the project: `references/secrets-management.md`.
 
 ## Dependency security
 

@@ -1,7 +1,7 @@
 ---
 name: project-steward
-description: Engineering discipline and lifecycle management for any code change in a git repository — features, fixes, refactors, security and dependency work — with branches, tests, documentation, Conventional Commits, versioning, changelogs, pull requests, releases and deployment handled for the user. Use whenever the user asks to write, change or fix code in a repository, even when they describe only the outcome and never mention git, tests or process; also to bootstrap or professionalize a repository, prepare a release, deploy, or audit repository health.
-when_to_use: Requests such as "add X", "fix the Y bug", "refactor Z", "prepare a release", "publish v1.2", "open a PR", "set up CI", "clean up this repo", and their equivalents in other languages ("ajoute", "corrige", "prépare une release", "mets en place la CI"). Also branch/worktree strategy, ADRs, roadmaps, GitHub governance, secret and dependency scanning. Not for questions about code that change nothing.
+description: Engineering discipline and lifecycle management for any code change in a git repository — features, fixes, refactors, security and dependency work — with branches, tests, documentation, Conventional Commits, versioning, changelogs, pull requests, releases and deployment handled for the user. Use whenever the user asks to write, change or fix code in a repository, even when they describe only the outcome and never mention git, tests or process; also to start a new project from an idea (product brief, requirements, stack, roadmap), bootstrap or professionalize a repository, prepare a release, deploy, or audit repository health.
+when_to_use: Requests such as "add X", "fix the Y bug", "refactor Z", "prepare a release", "publish v1.2", "open a PR", "set up CI", "clean up this repo", and their equivalents in other languages ("ajoute", "corrige", "prépare une release", "mets en place la CI"). Also "j'ai une idée de projet", "new project", PRD, specs, branch/worktree strategy, ADRs, roadmaps, documentation, GitHub governance, secrets management (vault, password manager, .env), secret and dependency scanning. Not for questions about code that change nothing.
 argument-hint: "[task, e.g. add CSV export]"
 ---
 
@@ -78,6 +78,7 @@ For managed work, load the matching workflow and use it as an execution checklis
 - `workflows/bugfix.md`
 - `workflows/hotfix.md`
 - `workflows/release.md`
+- `workflows/project-inception.md` — starting a new project from an idea: brief, requirements, stack ADR, roadmap
 - `workflows/project-bootstrap.md`
 - `workflows/deploy.md` — putting a project online or updating a deployed environment
 - `workflows/improve-skill.md` — for improving Project Steward itself
@@ -109,6 +110,7 @@ Load these as needed for the task at hand:
 - `references/testing-policy.md`
 - `references/documentation-standard.md`
 - `references/security-policy.md`
+- `references/secrets-management.md` — where secrets live, by stage: `.env`, password manager, sops, secret manager
 - `references/data-leak-prevention.md`
 - `references/dependency-policy.md`
 - `references/vulnerability-management.md` — continuous dependency vulnerability scanning, severity thresholds, triage
@@ -130,19 +132,13 @@ Repository-specific instructions override this skill only when they are explicit
 
 When entering an unfamiliar repository, review its health (README, manifests, tests, CI, `.gitignore`, secrets exposure, branch state, versioning, changelog, license, templates — full list in `references/project-health.md`) and report major gaps before making large changes.
 
-When asked to bootstrap or professionalize a repository, follow `workflows/project-bootstrap.md` and `references/bootstrap-checklist.md`: audit first, preserve healthy existing conventions, create missing baseline files, and produce a prioritized remediation list instead of fixing everything at once.
+When the owner starts from an idea in an empty repository, follow `workflows/project-inception.md` before bootstrap. When asked to bootstrap or professionalize a repository, follow `workflows/project-bootstrap.md` and `references/bootstrap-checklist.md`: audit first, preserve healthy existing conventions, create missing baseline files, and produce a prioritized remediation list instead of fixing everything at once.
 
 Grow governance with the repository using `references/scaling-model.md` — do not impose full enterprise ceremony on day one.
 
 ## Project memory files
 
-Prefer keeping repository-specific context in committed files:
-
-- `AGENTS.md` — repository-specific agent instructions
-- `PROJECT.md` — product/project context and current direction
-- `ROADMAP.md` — planned work
-- `CHANGELOG.md` — released changes
-- `docs/architecture.md` and `docs/adr/` — architecture and decisions
+Keep repository-specific context in committed files — `AGENTS.md` (agent instructions), `PROJECT.md` (product brief and requirements), `ROADMAP.md` (milestones), `CHANGELOG.md`, `docs/architecture.md` and `docs/adr/` — each fact in one place (`references/documentation-standard.md`, "What goes where").
 
 If `CLAUDE.md` already exists, reuse it rather than duplicating rules; when both files exist, `CLAUDE.md` must import `@AGENTS.md` (`references/claude-code.md`).
 
