@@ -2,6 +2,10 @@
 
 Use for a new repository or when professionalizing an existing one.
 
+When the owner starts from an idea and the repository is empty, run `workflows/project-inception.md`
+first: it writes the brief, the stack ADR and the roadmap, then comes back here. Step 1 then reads
+the stack from that ADR instead of detecting it.
+
 ## 1. Detect project type
 
 Inspect:
@@ -43,20 +47,20 @@ Stage 1 — Personal, adding:
 - `.editorconfig`;
 - tests;
 - lint/format;
-- `.env.example`;
+- `.env.example`, and the secrets mechanism chosen with the owner (`references/secrets-management.md`);
 - LICENSE;
 - SECURITY;
-- CI, including a dependency vulnerability scan;
+- `PROJECT.md` and `ROADMAP.md` from `templates/` — short; filled by inception, or from the README and the owner's answers;
+- `CHANGELOG.md` with `[Unreleased]`, and a version source at `0.1.0`;
+- CI, including a secret scan and a dependency vulnerability scan;
 - GitHub issue/PR templates;
-- `AGENTS.md` from `templates/AGENTS.md`, with the owner's choices in "Agent autonomy", and `CLAUDE.md` from `templates/CLAUDE.md` (`references/claude-code.md`).
+- `AGENTS.md` from `templates/AGENTS.md`, with the owner's choices in "Agent autonomy", `CLAUDE.md` from `templates/CLAUDE.md`, and `.claude/settings.json` from `templates/.claude/settings.json` once the owner agrees (`references/claude-code.md`, "Project setup").
 
 Stage 2 — Shared, adding:
 
 - CONTRIBUTING;
-- PROJECT;
-- ROADMAP;
-- CHANGELOG;
 - CODEOWNERS;
+- shared secrets through encrypted files or a secret manager;
 - architecture documentation;
 - ADR folder.
 

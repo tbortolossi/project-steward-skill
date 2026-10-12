@@ -14,6 +14,7 @@ Run locally with:
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -27,7 +28,13 @@ INTERNAL_PREFIXES = ("references/", "workflows/", "profiles/", "templates/", "sc
 
 # Paths that name files inside a *target* repository rather than this one.
 # `docs/architecture.md` is advice to the user's project, not a file here.
-TARGET_REPO_PREFIXES = ("docs/architecture", "docs/adr", "docs/troubleshooting")
+TARGET_REPO_PREFIXES = (
+    "docs/architecture",
+    "docs/adr",
+    "docs/troubleshooting",
+    "docs/requirements",
+    "docs/assets",
+)
 
 # Claude Code truncates description + when_to_use beyond this many characters.
 LISTING_LIMIT = 1536
@@ -74,6 +81,18 @@ def check_yaml(report: Report) -> None:
             report.check(rel, True)
         except yaml.YAMLError as exc:
             report.check(rel, False, str(exc).splitlines()[0])
+
+
+def check_json(report: Report) -> None:
+    """Claude Code rejects settings files that are not strict JSON."""
+    print("\nJSON templates parse")
+    for path in sorted(p for p in ROOT.rglob("*.json") if ".git" not in p.parts):
+        rel = path.relative_to(ROOT).as_posix()
+        try:
+            json.loads(path.read_text(encoding="utf-8"))
+            report.check(rel, True)
+        except json.JSONDecodeError as exc:
+            report.check(rel, False, str(exc))
 
 
 def check_references(report: Report) -> None:
@@ -163,6 +182,7 @@ def check_referenced_policies_exist(report: Report) -> None:
 def main() -> int:
     report = Report()
     check_yaml(report)
+    check_json(report)
     check_references(report)
     check_skill_frontmatter(report)
     check_claude_template(report)

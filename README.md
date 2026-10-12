@@ -8,7 +8,7 @@ It provides a lightweight but scalable operating model for repositories that may
 
 - `SKILL.md` — skill entry point (YAML frontmatter + operating model router)
 - `OPERATING-GUIDE.md` — how to work with the skill day to day, and what to expect from it
-- `references/` — reusable engineering policies
+- `references/` — reusable engineering policies, including documentation and secrets management
 - `workflows/` — step-by-step execution checklists per change type
 - `profiles/` — technology-specific baselines with automatic detection
 - `templates/` — repository bootstrap files
@@ -56,14 +56,17 @@ Copy or adapt selected files from `templates/` into each repository.
 Recommended repository-level context:
 
 - `AGENTS.md`, including its "Agent autonomy" section
-- `CLAUDE.md` importing `@AGENTS.md`, for Claude Code
-- `PROJECT.md`
-- `ROADMAP.md`
+- `CLAUDE.md` importing `@AGENTS.md`, and `.claude/settings.json`, for Claude Code
+- `PROJECT.md` — product brief with numbered requirements
+- `ROADMAP.md` — milestones
 - `CHANGELOG.md`
 - `docs/architecture.md`
 - `docs/adr/`
 
 ## Philosophy
+
+A project started from an idea begins with a short product brief, a stack decision and a roadmap
+(`workflows/project-inception.md`) before any code.
 
 Start lightweight. Add governance as risk, contributors, users, or operational importance increase.
 
@@ -82,7 +85,10 @@ The skill includes defense-in-depth guidance and templates for:
 - sensitive-data/artifact review;
 - Dependabot version updates and alerts (distinct mechanisms — the config file does not enable alerts);
 - dependency vulnerability scanning in CI, on pull requests and on a weekly schedule;
-- branch protection guidance.
+- branch protection guidance;
+- secrets management by stage: `.env`, password manager injection, sops, secret managers such as
+  Vault (`references/secrets-management.md`);
+- Claude Code deny rules that keep secret files out of the agent's reach.
 
 Secret scanning is intentionally treated separately from general sensitive-data detection: credentials can often be detected reliably, while PII/customer/internal-data detection is heuristic and still requires review.
 

@@ -6,6 +6,46 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.14.0] - 2026-10-12
+
+Start new projects from an idea on solid ground: a short product brief
+with numbered requirements, a recorded stack decision, a milestone plan,
+a secrets mechanism matched to the stage, documentation rules, and a
+Claude Code setup that keeps secret files away from the agent. Details in
+`docs/skill-improvements/SIP-0006-inception-secrets-documentation.md`.
+
+### Added
+
+- `workflows/project-inception.md`: idea → questions → `PROJECT.md` brief
+  (`FR`/`NFR` with acceptance criteria) → stack ADR → `ROADMAP.md`
+  milestones → bootstrap → walking skeleton.
+- `references/secrets-management.md`: four rungs (`.env`, password-manager
+  injection, sops/age, secret manager such as Vault) by stage; CI secrets
+  and OIDC; agent rules; rotation.
+- `templates/.claude/settings.json`: deny rules for secret files and cloud
+  credentials, read-only allow rules.
+- `references/claude-code.md`: "Project setup", including what deny rules
+  do not cover.
+- `scripts/check_skill.py`: JSON templates must parse.
+
+### Changed
+
+- `references/documentation-standard.md`: "What goes where" table,
+  writing rules, ADR immutability, keeping documentation current.
+- Stage 1 (`references/scaling-model.md`, `workflows/project-bootstrap.md`,
+  `references/bootstrap-checklist.md`) now includes `PROJECT.md`,
+  `ROADMAP.md`, `CHANGELOG.md` with a version source, ADRs, a chosen
+  secrets mechanism, a CI secret scan and `.claude/settings.json`.
+  Stage 2 and 3 gain shared-secret and secret-manager requirements.
+- `templates/PROJECT.md` is a product brief; `templates/ROADMAP.md` uses
+  milestones; `templates/AGENTS.md` cites requirements and keeps agents
+  away from secret files.
+- `workflows/new-feature.md`, `references/project-health.md`,
+  `references/security-policy.md`: requirement IDs, documentation and
+  secrets drift checks.
+- `SKILL.md`: router entries and triggers for ideas, PRD, documentation
+  and secrets.
+
 ## [0.13.0] - 2026-10-12
 
 Skill changes the owner asks for are applied, released and installed in

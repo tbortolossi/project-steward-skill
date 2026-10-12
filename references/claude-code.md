@@ -65,6 +65,38 @@ example:
 Propose such rules; never write them to settings without the user's explicit request. Never add
 allow rules for force-push, `git reset --hard`, branch deletion on the remote, or production deploys.
 
+## Project setup
+
+A repository worked on with Claude Code gets, from Stage 1 (`references/scaling-model.md`):
+
+- `CLAUDE.md` importing `@AGENTS.md` (above);
+- `.claude/settings.json`, committed, from `templates/.claude/settings.json`: deny rules that keep
+  secret files and cloud credentials out of the agent's reach, and a few read-only allow rules. Add
+  the allow rules matching the repository's "Agent autonomy" section. Install it when the owner
+  agrees, as part of the bootstrap question;
+- `.claude/settings.local.json` for personal settings, gitignored
+  (`templates/.gitignore-security-snippet`).
+
+What the deny rules cover, and what they do not:
+
+- `deny` always wins over `allow`. That is why the template lists `.env` variants by name instead
+  of `.env.*`, which would also hide `.env.example`.
+- A bare filename such as `Read(.env)` matches at any depth. A `Read` deny also blocks editing and
+  creating that file: the owner creates `.env`, not the agent.
+- Read rules also stop the shell commands Claude Code recognizes (`cat`, `head`, `tail`, `sed`,
+  redirections), not a script or a recursive `grep` that reads the file indirectly. For OS-level
+  enforcement, the owner can enable the sandbox (`sandbox.enabled` with
+  `sandbox.filesystem.denyRead`, macOS/Linux/WSL2) in their user settings. Use both.
+- The real protection is keeping plaintext secrets off the disk (`references/secrets-management.md`).
+
+Further project configuration, added only when it earns its place:
+
+- `.mcp.json`, committed, for MCP servers the project needs. Write secrets as `${VAR}` references,
+  never as values.
+- Project skills (`.claude/skills/`) or hooks for a procedure repeated across sessions. A hook
+  that blocks something is a guard rail; document it in `AGENTS.md` so other agents follow the rule
+  too.
+
 ## Commits and pull requests
 
 Follow Conventional Commits (`references/git-workflow.md`) and end the message with the attribution
