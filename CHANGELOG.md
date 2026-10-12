@@ -40,6 +40,8 @@ repository instructions are actually read. Details in
   `references/bootstrap-checklist.md`, `references/scaling-model.md`):
   `AGENTS.md` with autonomy choices and `CLAUDE.md` at Stage 1.
 - `OPERATING-GUIDE.md`, `README.md`: autonomy and Claude Code usage.
+- This repository applies the rule to itself: `CLAUDE.md` imports
+  `AGENTS.md`.
 
 ## [0.11.0] - 2026-09-20
 
