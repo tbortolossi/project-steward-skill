@@ -6,6 +6,13 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.15.1] - 2026-10-12
+
+### Fixed
+
+- Python bytecode (`scripts/__pycache__`) committed by mistake in 0.15.0 is
+  removed and ignored.
+
 ## [0.15.0] - 2026-10-12
 
 The agent can now write non-secret settings into `.env` without reading
