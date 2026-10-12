@@ -12,6 +12,19 @@ guidance, YAML templates, and one check script.
 - Every change bumps `VERSION` and `CHANGELOG.md` (SemVer) and is released with an annotated tag.
   CI enforces that `VERSION` has a matching changelog section.
 
+## Agent autonomy
+
+Skill changes the owner asks for are released and installed in one pass
+(`references/skill-evolution-policy.md`, "Owner-requested changes").
+
+- push-topic-branches: yes
+- open-pull-requests: yes
+- merge-to-default-branch: yes
+- tag-and-release: yes
+- deploy-non-production: ask
+
+The installed copy is a clone at `~/.claude/skills/project-steward/`.
+
 ## Structure
 
 - `SKILL.md` is a **router**, not a manual. Keep it compact; detailed policy belongs in

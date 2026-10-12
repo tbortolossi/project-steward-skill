@@ -156,7 +156,7 @@ Every repository with a lockfile runs a dependency vulnerability scan in CI on p
 
 Project Steward is versioned (`VERSION`, `CHANGELOG.md`) and may improve when reusable capability gaps are discovered. Keep project-specific learning in the repository; for reusable learning, follow `workflows/improve-skill.md` and `references/skill-evolution-policy.md`.
 
-Every skill change — including auto-applied low-risk improvements — must be committed to the skill's own git repository with the SIP referenced, so rollback is always possible. Changes to defaults, mandatory behavior, destructive actions, security posture, or external side effects require explicit user approval.
+Every skill change — including auto-applied low-risk improvements — must be committed to the skill's own git repository with the SIP referenced, so rollback is always possible. Changes to defaults, mandatory behavior, destructive actions, security posture, or external side effects require explicit user approval; an explicit request from the owner is that approval, and the change is released and installed in one pass.
 
 Project Steward must not silently weaken its own security, testing, documentation, or approval rules.
 

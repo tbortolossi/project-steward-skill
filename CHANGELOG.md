@@ -27,6 +27,10 @@ in `docs/skill-improvements/SIP-0005-owner-requested-upgrades.md`.
 
 - `workflows/improve-skill.md`: approval and version steps cover
   owner-requested changes and the installed copy.
+- `SKILL.md`: an explicit owner request counts as the approval for a
+  skill change (edited by the owner).
+- This repository's `AGENTS.md` gains an "Agent autonomy" section,
+  written by the owner.
 
 ## [0.12.0] - 2026-10-12
 
