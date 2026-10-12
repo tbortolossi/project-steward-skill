@@ -6,6 +6,23 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.14.1] - 2026-10-12
+
+CI templates that fail on first use are fixed. Details in
+`docs/skill-improvements/SIP-0007-ci-template-fixes.md`.
+
+### Fixed
+
+- `templates/.github/workflows/python-ci.yml` and `dependency-audit.yml`:
+  `astral-sh/setup-uv@v10` does not exist; pinned to `v10.2.0`.
+- `templates/.github/workflows/gitleaks.yml`: grant `pull-requests: read`,
+  without which the secret scan fails with 403 on every pull request.
+
+### Changed
+
+- `profiles/github-actions.md`: check that every `uses:` reference exists
+  before committing a workflow.
+
 ## [0.14.0] - 2026-10-12
 
 Start new projects from an idea on solid ground: a short product brief

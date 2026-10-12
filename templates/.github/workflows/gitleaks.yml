@@ -8,6 +8,9 @@ on:
 
 permissions:
   contents: read
+  # gitleaks-action lists the commits of a pull request through the API; without this it fails
+  # with 403 on every pull request.
+  pull-requests: read
 
 jobs:
   gitleaks:

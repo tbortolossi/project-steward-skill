@@ -26,6 +26,9 @@ changing. Templates: `templates/.github/workflows/dependency-audit.yml` and
 ## Security
 
 - pin actions to stable major versions at minimum; stronger pinning may be appropriate for high-security repositories;
+- check that every `uses:` reference exists before committing a workflow
+  (`gh api repos/<owner>/<repo>/git/matching-refs/tags/<ref>`): some actions, such as
+  `astral-sh/setup-uv`, publish only full versions and have no moving major tag;
 - use least-privilege `permissions`;
 - do not print secrets;
 - avoid untrusted pull-request code accessing privileged secrets;
