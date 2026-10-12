@@ -82,10 +82,12 @@ What the deny rules cover, and what they do not:
 - `deny` always wins over `allow`. That is why the template lists `.env` variants by name instead
   of `.env.*`, which would also hide `.env.example`.
 - A bare filename such as `Read(.env)` matches at any depth. A `Read` deny also blocks editing and
-  creating that file with the file tools. To set a non-secret variable, the agent runs
+  creating that file with the file tools. The `.env` rules belong only to repositories whose `.env`
+  still holds secrets (rung 1): when secrets come from a vault, remove them so the agent can read
+  and edit configuration (`references/secrets-management.md`, "AI agents and secrets"). At rung 1
+  the agent sets non-secret variables with
   `python3 ~/.claude/skills/project-steward/scripts/set_env.py KEY=VALUE` (allowed by the template,
-  invoked with exactly that path so the allow rule matches); secret values stay the owner's to
-  paste (`references/secrets-management.md`, "AI agents and secrets").
+  invoked with exactly that path so the allow rule matches).
 - Read rules also stop the shell commands Claude Code recognizes (`cat`, `head`, `tail`, `sed`,
   redirections), not a script or a recursive `grep` that reads the file indirectly. For OS-level
   enforcement, the owner can enable the sandbox (`sandbox.enabled` with

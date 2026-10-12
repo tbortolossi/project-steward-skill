@@ -13,6 +13,9 @@ instead, how they reach the code, and how that grows with the project.
 - Every secret can be rotated without a code change, and someone knows how.
 - Plaintext secrets on disk are a liability: anything that can read the file, including an AI agent
   or a backup, can read the secret.
+- **Aim for a vault, not `.env`.** Secrets live in a password manager or secret manager and are
+  injected at run time (rung 2 and above); `.env` then holds configuration only (ids, regions,
+  paths, model names, ports) and stops being sensitive. Rung 1 is a starting point, not a target.
 
 ## Choosing where secrets live
 
@@ -58,18 +61,20 @@ Rules for choosing:
 ## AI agents and secrets
 
 - The agent never needs a secret's value to write code that uses it. It works from names in
-  `.env.example`.
-- The agent does not read, print, or paste `.env` files, key files, or credential stores, and does
-  not ask the owner to paste a secret into the conversation. When a command needs a secret, the
-  owner runs it, or it runs through rung 2 injection.
-- The agent may **write** non-secret settings into `.env` (a project id, a region, a file path, a
-  model name, a port) with `scripts/set_env.py`, which adds or replaces a variable by name and
-  prints names only; `--check` reports which names are set, never their values. The script refuses
-  secret-looking names and values: API keys, tokens and passwords are still set by the owner.
-  Writing is safe where reading is not, because nothing of the file enters the agent's context.
-- In Claude Code, deny rules in `.claude/settings.json` back this up (`references/claude-code.md`,
-  "Project setup"). They are a guard rail, not a vault: rung 2 and above keep plaintext off the disk
-  entirely, which is the real protection.
+  `.env.example` (or references in `.env.tpl`), and never asks the owner to paste a secret into the
+  conversation. When a command needs a secret, the owner runs it, or it runs through injection.
+- The agent never reads key files, credential stores or vault exports.
+- **Where `.env` holds no secret** (rung 2 and above, or a project whose secrets are all key files
+  or vault references): `.env` is ordinary configuration. The agent reads and edits it, and the
+  `Read(.env…)` deny rules are left out of `.claude/settings.json` (`references/claude-code.md`,
+  "Project setup"). It still never writes a secret value into it.
+- **Where `.env` still holds secrets** (rung 1): the agent does not read, print or paste it; the
+  deny rules stay. It may write non-secret settings with `scripts/set_env.py`, which adds,
+  replaces or removes variables by name and prints names only (`--check` reports presence); the
+  script refuses secret-looking names and values. Propose moving the secrets to rung 2: that is
+  what makes `.env` safe to read.
+- Deny rules are a guard rail, not a vault: keeping plaintext secrets off the disk is the real
+  protection.
 
 ## Rotation and incidents
 

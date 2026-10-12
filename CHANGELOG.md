@@ -6,6 +6,22 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.16.0] - 2026-10-12
+
+States the intent behind the secrets rules: secrets belong in a vault,
+so `.env` becomes plain configuration the agent may read and edit.
+Details in `docs/skill-improvements/SIP-0009-vault-first-env.md`.
+
+### Changed
+
+- `references/secrets-management.md`: "aim for a vault, not `.env`";
+  where `.env` holds no secret the agent reads and edits it and the
+  `.env` deny rules are left out; at rung 1 the old rules and
+  `set_env.py` still apply, with a nudge toward rung 2.
+- `references/claude-code.md`, `templates/AGENTS.md`,
+  `workflows/project-inception.md`: same rule; inception aims for rung 2
+  or above.
+
 ## [0.15.1] - 2026-10-12
 
 ### Fixed

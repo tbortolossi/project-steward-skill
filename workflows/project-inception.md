@@ -54,7 +54,8 @@ uses.
 The owner decides. Record the decision as `docs/adr/0001-<stack>.md` from
 `templates/docs/adr/0000-template.md`, with the rejected alternative and its revisit conditions.
 
-Choose the secrets rung in the same step (`references/secrets-management.md`) and note it in the
+Choose the secrets rung in the same step (`references/secrets-management.md`), aiming for a vault
+(rung 2 or above) so `.env` holds configuration only, and note it in the
 ADR or the brief.
 
 ## 4. Plan the delivery
