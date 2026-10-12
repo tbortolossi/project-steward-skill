@@ -6,6 +6,41 @@ Project Steward follows Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-10-12
+
+Make the skill work as a delegation target in Claude Code: it triggers on
+ordinary coding requests, knows what it may do without asking, and its
+repository instructions are actually read. Details in
+`docs/skill-improvements/SIP-0004-claude-code-integration.md`.
+
+### Added
+
+- `references/claude-code.md`: path convention, AGENTS.md/CLAUDE.md rule,
+  mapping of workflow steps to Claude Code tools (task list,
+  `AskUserQuestion`, plan mode, worktrees, `gh`), and how autonomy relates
+  to the harness and `.claude/settings.json`.
+- `references/ai-agent-policy.md`: "Autonomy" — local actions never asked;
+  push, pull request, merge, tag, release and non-production deploy
+  governed by the repository's "Agent autonomy" section, default `ask`,
+  asked once per task; force-push, production deploys, data deletion and
+  recurring costs always asked.
+- `templates/CLAUDE.md`: `@AGENTS.md` import. Claude Code ignores
+  `AGENTS.md` whenever a `CLAUDE.md` exists.
+- `templates/AGENTS.md`: "Agent autonomy" section and a line directing
+  agents to use the skill for every code change.
+- `scripts/check_skill.py`: trigger text within Claude Code's listing
+  limit; `templates/CLAUDE.md` imports `AGENTS.md`.
+
+### Changed
+
+- `SKILL.md`: description triggers on outcome-only coding requests;
+  `when_to_use` and `argument-hint` added; path rule and autonomy summary;
+  data-protection and dependency sections condensed into pointers.
+- Bootstrap (`workflows/project-bootstrap.md`,
+  `references/bootstrap-checklist.md`, `references/scaling-model.md`):
+  `AGENTS.md` with autonomy choices and `CLAUDE.md` at Stage 1.
+- `OPERATING-GUIDE.md`, `README.md`: autonomy and Claude Code usage.
+
 ## [0.11.0] - 2026-09-20
 
 A merged change is not running anywhere until the environments that track

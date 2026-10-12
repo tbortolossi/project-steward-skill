@@ -1,6 +1,8 @@
 ---
 name: project-steward
-description: Software project lifecycle management and engineering discipline for repositories of any maturity. Use when bootstrapping or professionalizing a repository, implementing a feature, fix, refactor, or security change with proper git workflow, preparing a release, deploying a project, auditing repository health, or enforcing testing, documentation, dependency, cost, and security hygiene. Also use for branch/worktree strategy, changelogs, ADRs, roadmaps, and CI/governance setup.
+description: Engineering discipline and lifecycle management for any code change in a git repository — features, fixes, refactors, security and dependency work — with branches, tests, documentation, Conventional Commits, versioning, changelogs, pull requests, releases and deployment handled for the user. Use whenever the user asks to write, change or fix code in a repository, even when they describe only the outcome and never mention git, tests or process; also to bootstrap or professionalize a repository, prepare a release, deploy, or audit repository health.
+when_to_use: Requests such as "add X", "fix the Y bug", "refactor Z", "prepare a release", "publish v1.2", "open a PR", "set up CI", "clean up this repo", and their equivalents in other languages ("ajoute", "corrige", "prépare une release", "mets en place la CI"). Also branch/worktree strategy, ADRs, roadmaps, GitHub governance, secret and dependency scanning. Not for questions about code that change nothing.
+argument-hint: "[task, e.g. add CSV export]"
 ---
 
 # Project Steward
@@ -24,15 +26,23 @@ Treat every non-trivial code change as managed work:
 7. Update documentation when behavior, interfaces, operations, setup, or architecture change.
 8. Run required quality and security checks.
 9. Prepare a clean commit history and pull request.
-10. Verify acceptance criteria; merge only when repository policy allows it.
+10. Verify acceptance criteria; push, open the pull request and merge as the "Agent autonomy" section allows (see Autonomy below).
 11. Clean up temporary branches/worktrees.
 12. Update changelog, release notes, roadmap, or project status when applicable.
-
-Do not ask the user to approve routine engineering steps (creating a branch, running tests, updating documentation, formatting code) unless the project explicitly requires approval.
 
 Ask for user input only for: product decisions, ambiguous requirements with meaningful consequences, destructive operations, security-sensitive tradeoffs, irreversible migrations, meaningful cost impact, or major architectural forks.
 
 Project Steward does not decide product direction without user input.
+
+## Paths and agent
+
+Paths beginning with `references/`, `workflows/`, `profiles/`, `templates/` or `scripts/` are relative to this skill's directory (`${CLAUDE_SKILL_DIR}` in Claude Code). Every other path names a file in the user's repository.
+
+In Claude Code, also load `references/claude-code.md`: it maps these rules onto native tools (task list, `AskUserQuestion`, plan mode, worktrees, `gh`) and explains why `AGENTS.md` needs an `@AGENTS.md` import in `CLAUDE.md`.
+
+## Autonomy
+
+Local, reversible steps (branch, edit, test, commit on a topic branch) never need approval. Outward actions (push, pull request, merge, tag, release, non-production deploy) follow the repository's "Agent autonomy" section; without one, ask once per task, bundling every outward action in one question. Force-push, production deploys, data deletion and recurring costs always need explicit approval. Full rules in `references/ai-agent-policy.md`, "Autonomy".
 
 ## Work classification
 
@@ -106,7 +116,8 @@ Load these as needed for the task at hand:
 - `references/bootstrap-checklist.md`
 - `references/github-governance.md`
 - `references/project-health.md`
-- `references/ai-agent-policy.md`
+- `references/ai-agent-policy.md` — parallel agents, handoffs, and autonomy levels
+- `references/claude-code.md` — Claude Code tool mapping, CLAUDE.md/AGENTS.md, permissions
 - `references/language-policy.md`
 - `references/skill-evolution-policy.md`
 - `references/self-audit.md`
@@ -133,24 +144,13 @@ Prefer keeping repository-specific context in committed files:
 - `CHANGELOG.md` — released changes
 - `docs/architecture.md` and `docs/adr/` — architecture and decisions
 
-If another agent instruction file already exists (such as `CLAUDE.md`), reuse it rather than duplicating rules.
+If `CLAUDE.md` already exists, reuse it rather than duplicating rules; when both files exist, `CLAUDE.md` must import `@AGENTS.md` (`references/claude-code.md`).
 
-## Repository data protection
+## Data protection and dependency vulnerabilities
 
-Before committing or publishing repository changes:
+Before committing or publishing, scan for secrets and review for sensitive artifacts (logs, PCAPs, HAR files, dumps, screenshots, customer data); a clean secret scan does not prove absence of confidential data (`references/data-leak-prevention.md`).
 
-- scan for credentials and secrets;
-- review for sensitive diagnostic/data artifacts (logs, PCAPs, HAR files, dumps, screenshots, support bundles, customer data);
-- prefer synthetic/redacted fixtures;
-- use GitHub native secret scanning/push protection and a scanner such as Gitleaks for defense in depth.
-
-A clean secret scan does not prove absence of confidential or personal data. Details in `references/data-leak-prevention.md`.
-
-## Dependency vulnerabilities
-
-A dependency that was safe when adopted does not stay safe. Every repository with a lockfile runs a dependency vulnerability scan in CI — on pull requests **and** on a weekly schedule, because advisories appear while the code sits still — and enables dependency alerts, which are a separate setting from Dependabot version updates.
-
-Fail the build on high/critical; report lower severities. Never delete, mute, or downgrade an audit merely to make CI green. Full policy, per-ecosystem commands, triage, and suppression rules in `references/vulnerability-management.md`.
+Every repository with a lockfile runs a dependency vulnerability scan in CI on pull requests **and** weekly, and enables dependency alerts. Fail on high/critical; never mute an audit to make CI green (`references/vulnerability-management.md`).
 
 ## Skill evolution
 

@@ -29,6 +29,7 @@ Add:
 - dependency vulnerability scan in CI, on pull requests and weekly
 - dependency alerts enabled
 - issue/PR templates
+- agent instructions: `AGENTS.md` with an "Agent autonomy" section, imported by `CLAUDE.md` when Claude Code is used
 
 ## Stage 2 — Shared project
 

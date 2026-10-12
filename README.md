@@ -39,6 +39,12 @@ Copy (or clone) this directory to one of:
 
 Claude Code discovers the skill through the YAML frontmatter in `SKILL.md`; the `description` field determines when it triggers automatically.
 
+If you cloned it, update with `git pull` in that directory; releases are tagged `vX.Y.Z`.
+
+`references/claude-code.md` maps the skill onto Claude Code's native tools, and explains the one trap
+to know: Claude Code ignores `AGENTS.md` whenever a `CLAUDE.md` exists, so `CLAUDE.md` must start
+with `@AGENTS.md`.
+
 ### Other agents (Codex, VS Code agents, …)
 
 Point the agent's instruction mechanism at `SKILL.md`, or paste its content into the agent's system context. The `references/`, `workflows/`, and `profiles/` files are loaded on demand from paths relative to `SKILL.md`.
@@ -49,7 +55,8 @@ Copy or adapt selected files from `templates/` into each repository.
 
 Recommended repository-level context:
 
-- `AGENTS.md`
+- `AGENTS.md`, including its "Agent autonomy" section
+- `CLAUDE.md` importing `@AGENTS.md`, for Claude Code
 - `PROJECT.md`
 - `ROADMAP.md`
 - `CHANGELOG.md`
